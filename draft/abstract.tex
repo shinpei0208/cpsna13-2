@@ -1,0 +1,19 @@
+\begin{abstract}
+Visione-based object detection using camera sensors is an essential piece
+of perception for autonomous vehicles.
+Various combinations of features and models can be applied to increase
+the quality and the speed of object detection.
+A well-known approach uses histograms of oriented gradients (HOG)
+with deformable models to detect a car in an image \cite{Niknejad12}.
+A major challenge of this approach can be found in computational cost
+introducing a real-time constraint relevant to the real world.
+In this paper, we present an implementation technique using graphics
+processing units (GPUs) to accelerate computations of scoring similarity
+of the input image and the pre-defined models.
+Our implementation considers the entire program structure as well as the
+specific algorithm for practical use.
+We apply the presented technique to the real-world vehicle detection
+program and demonstrate that our implementation using commodity
+GPUs can achieve speedups of 1.5x to 3x in frame-rate over sequential
+and multithreaded implementations using traditional CPUs.
+\end{abstract}

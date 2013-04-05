@@ -1,0 +1,60 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Grand challenges of cyber-physical systems (CPS) include a high
+computational cost of understanding the physical world.
+Object detection is one of compute-intensive tasks for CPS.
+For example, an autonomous vehicle needs to detect and track other
+vehicles by itself.
+Current autonomous driving technologies \cite{Guizzo11, Levinson11,
+Urmson08} tend to rely on active sensors such as GPS, RADAR, and LIDAR
+\cite{Kirchner00, Streller02} together with very accurate pre-configured
+maps, but the use of passive camera sensors is becoming more practical
+due to recent advances in computer vision \cite{Dalal05, Felzenszwalb05,
+Felzenszwalb10}: vision-based object detection can be applied for
+various ranges and orientations.
+In particular, histograms of oriented gradients (HOG) \cite{Dalal05}
+features provide reliable high-level representations of an image
+underlying many state-of-the-art object detection
+algorithms~\cite{Felzenszwalb10, Geiger12, Rybski10, Suard06, Zhu06}.
+However, a major concern of HOG-based object detection remains in
+computational cost.
+
+Previous work on the implementation of HOG-based object detection are
+limited to either hardware implementations \cite{Kadota09, Karakaya09,
+Komorkiewicz12} or specific parts of HOG algorithms \cite{Chen11,
+Prisacariu09}.
+There is even no quantitative investigation of what implementation
+issues could prevent HOG-based object detection from being deployed in
+real-world applications.
+Given recent innovations in commodity hardware technology such as
+multicores and graphics processing units (GPUs), it is worth
+exploring if the current state of the arts meets computational
+requirements of cutting-edge object detection implementations.
+
+\textbf{Contribution:}
+This paper presents GPU implementations of HOG-based object detection in
+consideration of real-world applications using deformable part models
+\cite{Felzenszwalb10}.
+While this is a popular vision-based object detection approach, what
+remains an open question is a genelized programming technique and a
+quantification of performance characteristics for practical use.
+We begin with an analysis of traditional CPU
+implementations to find fundamental performance bottlenecks of HOG-based
+object detection.
+This analysis reasons about our approach to GPU implementations where we
+parallelize compute-intensive blocks of the object detection program
+using the GPU step by step to minimize its makespan.
+The experimental results obstained from a real-world car detection
+program using a commodity GPU show that the GPU outperforms the CPU by
+1.5x to 3x in frame-rate, while another 2x improvement would be needed
+at least to deploy in the real world.
+
+\textbf{Organization:}
+The rest of this paper is organized as follows.
+Section~\ref{sec:assumption} describes the assumption behind this paper.
+Section~\ref{sec:implementation} presents an analysis of HOG-based
+object detection and our GPU implementation technique.
+Section~\ref{sec:evaluation} evaluates the performance benefit of our
+technique over traditional CPU implementations.
+This paper concludes in Section~\ref{sec:conclusion}.

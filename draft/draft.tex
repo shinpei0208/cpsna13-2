@@ -1,0 +1,89 @@
+\documentclass[10pt, conference, compsocconf]{IEEEtran}
+\usepackage[dvipdfmx]{color}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[tight,footnotesize]{subfigure}
+\usepackage{subfigure}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{comment}
+\usepackage{listings}
+
+%-----------------------------------------
+% need for camera-ready
+%\pagestyle{empty}
+%----------------------------------------
+
+\begin{document}
+
+\title{Towards Cloud Computing for Mobility CPS}
+
+\author{
+\IEEEauthorblockN{
+Shinpei Kato\IEEEauthorrefmark{1},
+Yuki Iida\IEEEauthorrefmark{2}, 
+Yusuke Fujii\IEEEauthorrefmark{2}, 
+Takuya Azumi\IEEEauthorrefmark{2},
+Nobuhiko Nishio\IEEEauthorrefmark{2},\\
+Tsuyoshi Hamada\IEEEauthorrefmark{3}, 
+Satoshi Kagami\IEEEauthorrefmark{4}, and 
+Kazuya Takeda\IEEEauthorrefmark{1}
+}
+\\
+\IEEEauthorblockA{\IEEEauthorrefmark{1}
+School of Information Science, Nagoya University}
+\IEEEauthorblockA{\IEEEauthorrefmark{2}
+College of Information Science and Engineering, Ritsumeikan University}
+\IEEEauthorblockA{\IEEEauthorrefmark{3}
+Nagasaki Advanced Computing Center, Nagasaki University}
+\IEEEauthorblockA{\IEEEauthorrefmark{4}
+Digital Human Research Center, AIST}
+}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% listings setting
+\lstset{%
+  language={C},
+  basicstyle={\small},%
+  identifierstyle={\small},%
+  commentstyle={\small\itshape},%
+  keywordstyle={\small\bfseries},%
+  ndkeywordstyle={\small},%
+  stringstyle={\small\itshape},
+  frame={single},
+  breaklines=true,
+  columns=[l]{fullflexible},%
+  numbers=left,%
+  xrightmargin=5pt,%
+  xleftmargin=10pt,%
+  numberstyle={\scriptsize},%
+  stepnumber=1,
+  numbersep=5pt,%
+  lineskip=-0.5ex,%
+  showspaces=false
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%-----------------------------------------
+% need for camera-ready
+%\thispagestyle{empty}
+
+\input{abstract.tex}
+
+\begin{IEEEkeywords}
+ Cloud Computing; Smart Devices; CPS
+\end{IEEEkeywords}
+
+\input{introduction.tex}
+\input{approach.tex}
+
+\bibliographystyle{plain}
+{\footnotesize
+\bibliography{references}
+}
+
+\end{document}
+
+
+

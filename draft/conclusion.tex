@@ -1,0 +1,40 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+In this paper, we have presented GPU implementations of HOG-based object
+detection and their performance evaluation.
+Unlike preceding work that highly stressed on performance improvements,
+our implementations are based on an analysis of performance bottlenecks
+posed due to an introduction of the deformable models in HOG-based
+object detection.
+This approach ensures that the GPU truly accelerates approapriate
+computational blocks.
+Our evaluation using a commodity GPU showed that our GPU implementation
+can speed up the existing HOG-based vehicle detection program tailored
+to the deformable models by 1.5x to 3x over traditional CPU
+implementations.
+Given that this performance improvement is obtained from the entire
+program runtime rather than particular algorithm parts of the program,
+our contribution is useful and significant for real-world applications
+of vision-based object detection. 
+
+To the best of our knowledge, this is the first piece of work that made
+a \textit{tight} coordination of object detection and parallel computing
+-- a core challenge of CPS.
+Specifically we showed that a measured and structured way of GPU
+programming is efficient for the object detection program and quantified
+the impact of GPUs in performance.
+Our conclusion is that GPUs are promising to meet the required
+performance of vision-based object detection in the real world.
+
+In future work, we plan to complement this work with systemized
+coordinations of computations and I/O devices.
+Since real-world applications require camera sensors to obtain input
+images while GPUs are compute devices off the host computer, the data
+I/O latency could become a non-trivial bottleneck on the data bus.
+In this scenario, we need enhanced system support such as zero-copy
+approaches \cite{Kato13} to minimize the data latency raised between
+camera sensors and GPUs.
+We also plan to augment our GPU implementations using multiple GPUs in
+order to meet the real-time and real-fast requirement of real-world CPS
+applications.
