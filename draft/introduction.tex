@@ -1,60 +1,70 @@
 \section{Introduction}
 \label{sec:introduction}
 
-Grand challenges of cyber-physical systems (CPS) include a high
-computational cost of understanding the physical world.
-Object detection is one of compute-intensive tasks for CPS.
-For example, an autonomous vehicle needs to detect and track other
-vehicles by itself.
-Current autonomous driving technologies \cite{Guizzo11, Levinson11,
-Urmson08} tend to rely on active sensors such as GPS, RADAR, and LIDAR
-\cite{Kirchner00, Streller02} together with very accurate pre-configured
-maps, but the use of passive camera sensors is becoming more practical
-due to recent advances in computer vision \cite{Dalal05, Felzenszwalb05,
-Felzenszwalb10}: vision-based object detection can be applied for
-various ranges and orientations.
-In particular, histograms of oriented gradients (HOG) \cite{Dalal05}
-features provide reliable high-level representations of an image
-underlying many state-of-the-art object detection
-algorithms~\cite{Felzenszwalb10, Geiger12, Rybski10, Suard06, Zhu06}.
-However, a major concern of HOG-based object detection remains in
-computational cost.
+Mobility is an essential piece of our life.
+In recent years, transportation systems and automobiles are becoming
+more and more intelligent underlying high-efficient mobility of the
+societal infrastructure.
+Such innovations in mobility will reduce car accidents, remove human\'s
+stress, improve traffic throughput, and create new markets.
+To this end, the next-generation mobility technology is expected to
+achieve a tight coordination of computer systems and physical elements,
+often referred to as cyber-physical systems (CPS), facilitating a
+cyber-understanding of the physical world.
+A core challenge to this mobility CPS, however, is a power and space
+constraint of each mobility component.
+For example, moving vehicles cannot accommodate rich computer systems
+due to the limited battery power.
+Particularly the computational cost with respect to understanding the
+physical world is very high and the computing capability of current
+vehicular systems is woefully inadequate.
+In order to address this trade-off, mobility CPS must seek for a
+cooperative solution with advanced information and communication
+technology (ICT) such as cloud computing.
 
-Previous work on the implementation of HOG-based object detection are
-limited to either hardware implementations \cite{Kadota09, Karakaya09,
-Komorkiewicz12} or specific parts of HOG algorithms \cite{Chen11,
-Prisacariu09}.
-There is even no quantitative investigation of what implementation
-issues could prevent HOG-based object detection from being deployed in
-real-world applications.
-Given recent innovations in commodity hardware technology such as
-multicores and graphics processing units (GPUs), it is worth
-exploring if the current state of the arts meets computational
-requirements of cutting-edge object detection implementations.
+A good example of compute-intensive mobility CPS applications is an
+autonomous vehicle.
+It must recognize roads, traffic signs, surrounding vehicles, and
+pedestrians in real-time.
+An autonomous vehicle in the current state of the art tends to use laser
+sensors and/or cameras for those environmental perception tasks.
+The laser sensors can detect object edges as a set of 3-D points by
+hardware, reducing the computational requirement imposed on the
+vehicular system software, but are generally very expensive way beyond
+consumer electronics prices.
+On the other hand, the cameras are less expensive in price but are
+available at the expense of computational cost, because image processing
+is highly compute-intensive.
+It would require a rich set of multicore CPUs and hardware accelerators
+such as GPUs to meet the desired frame rate.
+Unfortunately these devices may not be affordable for battery-operated
+vehicular systems due to power consumption issues.
+As mentioned earlier, therefore, we should seek for a possibility of
+leveraging cloud computing technology to offload compute-intensive tasks
+onto high-performance computing (HPC) servers over the network.
+A question raised herein is ``what is the overhead of offloading
+computation and associated data to the cloud?''
+If this overhead is acceptable, it would be possible eventually to
+develop mobility CPS applications using commodity ICT platforms.
 
 \textbf{Contribution:}
-This paper presents GPU implementations of HOG-based object detection in
-consideration of real-world applications using deformable part models
-\cite{Felzenszwalb10}.
-While this is a popular vision-based object detection approach, what
-remains an open question is a genelized programming technique and a
-quantification of performance characteristics for practical use.
-We begin with an analysis of traditional CPU
-implementations to find fundamental performance bottlenecks of HOG-based
-object detection.
-This analysis reasons about our approach to GPU implementations where we
-parallelize compute-intensive blocks of the object detection program
-using the GPU step by step to minimize its makespan.
-The experimental results obstained from a real-world car detection
-program using a commodity GPU show that the GPU outperforms the CPU by
-1.5x to 3x in frame-rate, while another 2x improvement would be needed
-at least to deploy in the real world.
+We present a prototype implementation of commodity ICT platforms for
+mobility CPS applications to quantify the overhead of offloading
+computation and data to the cloud.
+Specifically we use a smartphone as an example of commodity ICT
+platforms to capture images and control an autonomous vehicle as an
+example of mobility CPS applications.
+The overhead of transferring images over the network governs the frame
+rate of image processing in the cloud while that of transferring control
+commands determines the minimum feedback-control period of autonomous
+driving.
+We demonstrate that the bottleneck of networked image processing can be
+found in the computation time itself rather than the network
+communication overhead.
+We also find that the average network throughput of commodity ICT is
+sufficient to execute autonomic control but the worst-case latency must
+be bounded to provide stability.
+This is a useful insight into a coordination of commodity ICT and
+mobility CPS.
 
 \textbf{Organization:}
-The rest of this paper is organized as follows.
-Section~\ref{sec:assumption} describes the assumption behind this paper.
-Section~\ref{sec:implementation} presents an analysis of HOG-based
-object detection and our GPU implementation technique.
-Section~\ref{sec:evaluation} evaluates the performance benefit of our
-technique over traditional CPU implementations.
-This paper concludes in Section~\ref{sec:conclusion}.
