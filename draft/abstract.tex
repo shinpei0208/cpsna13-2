@@ -1,19 +1,24 @@
 \begin{abstract}
-Visione-based object detection using camera sensors is an essential piece
-of perception for autonomous vehicles.
-Various combinations of features and models can be applied to increase
-the quality and the speed of object detection.
-A well-known approach uses histograms of oriented gradients (HOG)
-with deformable models to detect a car in an image \cite{Niknejad12}.
-A major challenge of this approach can be found in computational cost
-introducing a real-time constraint relevant to the real world.
-In this paper, we present an implementation technique using graphics
-processing units (GPUs) to accelerate computations of scoring similarity
-of the input image and the pre-defined models.
-Our implementation considers the entire program structure as well as the
-specific algorithm for practical use.
-We apply the presented technique to the real-world vehicle detection
-program and demonstrate that our implementation using commodity
-GPUs can achieve speedups of 1.5x to 3x in frame-rate over sequential
-and multithreaded implementations using traditional CPUs.
+ The next-generation mobility infrastructure requires computer systems
+ to be more and more intelligent and interactive with the physical
+ world.
+ A grand challenge to this cyber-physical systems (CPS) problem can be
+ found in real-time computing of autonomic control and environmental
+ perception.
+ Given the volume of information in the physical world, the
+ computational cost of autonomic control and environmental perception
+ is likely very high, which may not be affordable for embedded mobile
+ devices.
+ In this paper, we explore a possibility of leveraging cloud computing
+ technology to support such computationally expensive operations of
+ intelligent mobility CPS applications.
+ Specifically we quantify the overhead of offloading computations to the
+ cloud using commodity information and communication technology (ICT)
+ platforms taking an example of autonomous driving.
+ This quantification of overhead plays a vital role in the design issue
+ of emerging mobility CPS applications.
+ Our experimental results demonstrate that the current communication
+ standards including WiFi and LTE achieve sufficient throughput and
+ latency even when used with mobile smartphones to transfer large images
+ and high-rate control commands over the network.
 \end{abstract}

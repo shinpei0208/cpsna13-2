@@ -1,6 +1,56 @@
 \section{Prototyping}
 \label{sec:prototype}
 
+In this paper, we provide a prototyping of ICT platforms for mobility
+CPS applications, particularly taking an example of autonomous driving.
+We apply the cloud computing paradigm for autonomous driving to mitigate
+high computational cost imposed on wimpy embedded vehicular systems.
+One of the major goals of this cloud-based autonomous driving system is
+to offload the computation requirement of autonomic control and
+environmental perception to a remote HPC server from a local vehicular
+system.
+Note that we focus on ICT platforms.
+Implementations of autonomic control and environmental perception for
+autonomous driving are outside the scope of this paper.
+Interested readers are encouraged to refer to our different
+contributions \cite{Hirabayashi13, Kagami13}.
+
+In the rest of this section, we present two ICT platforms for the
+development of cloud-based autonomous driving.
+The first platform is a smartphone application that controls the vehicle
+from remote sources.
+The second platform is also a smartphone application that transfers
+captured images to the HPC server as fast as possible.
+
+\subsection{Remote Vehicle Control}
+
+\begin{figure}[!t]
+ \centering
+ \includegraphics[width=0.6\hsize]{fig/Andrive.pdf}
+ \caption{A smartphone application for remote vehicle control.}
+ \label{fig:andrive}
+\end{figure}
+
+We have a TOYOTA Prius that is modified to be able to overwrite the
+control of steering, accel, and break from the computer.
+This computer called ``local master computer'' is connected to an
+additional embedded board that can directly send signals to the inside
+wire system to control the vehicle.
+We omit a detailed description of this autonomous driving system, as the
+primary focus of this paper is the measurement of overhead and latency.
+
+Fig. \ref{fig:andrive} illustrates the conceptual architecture of our
+experimental remote vehicle control system.
+We use a commodity smartphone to send control commands to the local
+master computer equipped within the vehicle through the network.
+The smartphone application determines the steering angle from the gyro
+sensor while the accel and the break strokes are controlled by the
+graphics user interface.
+Thus, we can intuitively use a smartphone as if it were a game
+controller of the vehicle remotely.
+
+\subsection{Networked Image Processing}
+
 \begin{figure}[!t]
  \centering
  \includegraphics[width=\hsize]{fig/TIPIC.pdf}
@@ -8,16 +58,23 @@
  \label{fig:tipic}
 \end{figure}
 
-The computional cost of real-time perception in mobility CPS is highly
-expensive.
+The computional cost of environmental perception in mobility CPS is
+highly expensive.
 The perception algorithm is often computationally complex and the volume
 of input data from laser sensors and cameras is not afforable for mobile
 embedded systems.
+Therefore it would be significant if we could offload these compute
+tasks to the cloud.
 
-\begin{figure}[!t]
- \centering
- \includegraphics[width=0.75\hsize]{fig/Andrive.pdf}
- \caption{A smartphone application for remote vehicle control.}
- \label{fig:andrive}
-\end{figure}
+Fig. \ref{fig:tipic} illustrates the conceptual architecture of our
+experimental networked image processing system.
+We capture images in real-time from commodity smartphones attached in
+the vehicle and transfer them over the network to the HPC server where
+the actual image processing tasks are executing.
+The results of image processing such as surrounding vehicle and
+pedestrian detection are fed back to the vehicular system.
+Though we have implemented many variants of image processing algorithms
+\cite{Hirabayashi13}, they are not focused on in this paper.
+Instead we investigate if current commodity ICT platforms can transfer
+data over the network while meeting the desired throughput and latency.
 
