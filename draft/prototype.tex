@@ -71,10 +71,38 @@ experimental networked image processing system.
 We capture images in real-time from commodity smartphones attached in
 the vehicle and transfer them over the network to the HPC server where
 the actual image processing tasks are executing.
-The results of image processing such as surrounding vehicle and
-pedestrian detection are fed back to the vehicular system.
+The results of image processing such as the detected vehicles and
+pedestrians are fed back to the vehicular system.
 Though we have implemented many variants of image processing algorithms
 \cite{Hirabayashi13}, they are not focused on in this paper.
 Instead we investigate if current commodity ICT platforms can transfer
 data over the network while meeting the desired throughput and latency.
 
+\begin{figure}[!t]
+ \centering
+ \includegraphics[width=\hsize]{fig/multithread.pdf}
+ \caption{Multithreading of image transfers.}
+ \label{fig:multithread}
+\end{figure}
+
+Unlike control commands, the size of an image is large and it generates
+additional latency for the transfer.
+For example, each image transfer is composed of (i) capturing an image,
+(ii) encoding that image, and (iii) transferring the encoded image.
+Since these three stages can be pipelined, the total throughput would
+benefit from multithreading and a multicore processor.
+Furthermore, we have observed that the encoding stage is much longer
+than the capture and the transfer stages when we use a smartphone as a
+client due to its wimpy embedded processor performance.
+This means that the effective rate of image capture and transfer may be
+limitted to the execution time of encodling.
+In order to maximize the image transfer throughput on an embedded
+multicore processor, we increase the number of threads for encoding as
+shown in Fig. \ref{fig:multithread}.
+In this example, one can see that the second (blue) transfer does not
+have to stall before the encoding stage because another thread is
+available for encoding whereas it would stall due to the preceding
+encoding process if there is only one thread available for encoding.
+Thus, we suggest that networked image processing using smartphones
+should make use of the multithreading capability and the parallelism of
+embedded multicore processors.
