@@ -5,9 +5,9 @@ Mobility is an essential piece of our life.
 In recent years, transportation systems and automobiles are becoming
 more and more intelligent underlying high-efficient mobility of the
 societal infrastructure.
-Such innovations in mobility will reduce car accidents, remove human\'s
+Such innovations in mobility could reduce car accidents, remove human\'s
 stress, improve traffic throughput, and create new markets.
-To this end, the next-generation mobility technology is expected to
+Towards this end, the next-generation mobility infrastructure is expected to 
 achieve a tight coordination of computer systems and physical elements,
 often referred to as cyber-physical systems (CPS), facilitating a
 cyber-understanding of the physical world.
@@ -15,16 +15,17 @@ A core challenge to this mobility CPS, however, is a power and space
 constraint of each mobility component.
 For example, moving vehicles cannot accommodate rich computer systems
 due to the limited battery power.
-Particularly the computational cost with respect to understanding the
-physical world is very high and the computing capability of current
-vehicular systems is woefully inadequate.
+Particularly the computational cost with respect to a
+cyber-understanding of the physical world is very high and the computing
+capability of current vehicular embedded systems is woefully
+inadequate.
 In order to address this trade-off, mobility CPS must seek for a
-cooperative solution with advanced information and communication
-technology (ICT) such as cloud computing.
+cooperation with advanced information and communication
+technology (ICT) such as cloud computing and smart devices.
 
-A good example of compute-intensive mobility CPS applications is an
-autonomous vehicle~\cite{Guizzo11, Levinson11, Urmson08}.
-It must recognize roads, traffic signs, surrounding vehicles, and
+A good example of computationally-expensive mobility CPS applications is
+an autonomous vehicle~\cite{Guizzo11, Levinson11, Urmson08}, which is
+required to recognize roads, traffic signs, surrounding vehicles, and
 pedestrians in real-time.
 An autonomous vehicle in the current state of the art tends to use laser
 sensors and/or cameras for those environmental perception tasks.
@@ -32,15 +33,15 @@ The laser sensors can detect object edges as a set of 3-D points by
 hardware, reducing the computational requirement imposed on the
 vehicular system software, but are generally very expensive way beyond
 consumer electronics prices.
-On the other hand, the cameras are less expensive in price but are
-available at the expense of computational cost, because image processing
+On the other hand, the cameras are less expensive in price but come
+available in exchange with computational cost, because image processing
 is highly compute-intensive.
 It would require a rich set of multicore CPUs and hardware accelerators
 such as GPUs to meet the desired frame rate.
 Unfortunately these devices may not be affordable for battery-operated
 vehicular systems due to power consumption issues.
-As mentioned earlier, therefore, we should seek for a possibility of
-leveraging cloud computing technology to offload compute-intensive tasks
+As aforementioned, therefore, we should seek for a possibility of
+employing cloud computing technology to offload compute-intensive tasks
 onto high-performance computing (HPC) servers over the network.
 A question raised herein is ``what is the overhead of offloading
 computation and associated data to the cloud?''
@@ -51,9 +52,9 @@ basis for mobility CPS applications.
 We present a prototype implementation of commodity ICT platforms for
 mobility CPS applications to quantify the overhead of offloading
 computation and data to the cloud.
-Specifically we use a smartphone as an example of commodity ICT
-platforms to capture images and control an autonomous vehicle as an
-example of mobility CPS applications.
+Specifically we focus on an autonomous vehicle as an example of
+mobility CPS applications, and leverage a commodity smartphone and
+PC server to process images and control the autonomous vehicle.
 The overhead of transferring images over the network governs the frame
 rate of image processing in the cloud while that of transferring control
 commands determines the minimum feedback-control period of autonomous
@@ -61,11 +62,11 @@ driving.
 We demonstrate that the bottleneck of networked image processing can be
 found in the computation time itself rather than the network
 communication overhead.
-We also find that the average network throughput of commodity ICT is
-sufficient to execute autonomic control but the worst-case latency must
-be bounded to provide stability.
-This is a useful insight into a coordination of commodity ICT and
-mobility CPS.
+We also find that the network throughput of commodity ICT is sufficient
+to execute autonomic control but the worst-case latency must be bounded
+to provide stability.
+Our contribution is a useful insight into a coordination of commodity
+ICT and mobility CPS.
 
 \textbf{Organization:}
 The rest of this paper is organized as follows.

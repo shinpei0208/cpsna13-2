@@ -3,15 +3,15 @@
 
 In this paper, we provide a prototyping of ICT platforms for mobility
 CPS applications, particularly taking an example of autonomous driving.
-We apply the cloud computing paradigm for autonomous driving to mitigate
-high computational cost imposed on wimpy embedded vehicular systems.
+We apply the cloud computing paradigm for autonomous driving to
+complement wimpy vehicular embedded systems.
 One of the major goals of this cloud-based autonomous driving system is
-to offload the computation requirement of autonomic control and
-environmental perception to a remote HPC server from a local vehicular
-system.
-Note that we focus on ICT platforms.
-Implementations of autonomic control and environmental perception for
-autonomous driving are outside the scope of this paper.
+to offload the computational requirement of autonomic control and
+environmental perception to remote HPC servers from local vehicular
+systems.
+We focus on ICT platforms.
+Hence, the implementations of autonomic control and environmental
+perception for autonomous driving are outside the scope of this paper.
 Interested readers are encouraged to refer to our different
 contributions \cite{Hirabayashi13, Kagami13}.
 
@@ -34,15 +34,15 @@ captured images to the HPC server as fast as possible.
 We have a TOYOTA Prius that is modified to be able to overwrite the
 control of steering, accel, and break from the computer.
 This computer called ``local master computer'' is connected to an
-additional embedded board that can directly send signals to the inside
-wire system to control the vehicle.
-We omit a detailed description of this autonomous driving system, as the
-primary focus of this paper is the measurement of overhead and latency.
+supplemental embedded device board that can directly send signals to the
+internale wire system controlling the vehicle.
+We omit a detailed description of this autonomous driving system, as our
+primary focus is the quantification of overhead.
 
-Fig. \ref{fig:andrive} illustrates the conceptual architecture of our
+Fig. \ref{fig:andrive} shows a conceptual architecture of our
 experimental remote vehicle control system.
-We use a commodity smartphone to send control commands to the local
-master computer equipped within the vehicle through the network.
+We make use of a commodity smartphone to send the control command to the
+local master computer equipped within the vehicle through the network.
 The smartphone application determines the steering angle from the gyro
 sensor while the accel and the break strokes are controlled by the
 graphics user interface.
@@ -58,25 +58,25 @@ controller of the vehicle remotely.
  \label{fig:tipic}
 \end{figure}
 
-The computional cost of environmental perception in mobility CPS is
-highly expensive.
-The perception algorithm is often computationally complex and the volume
-of input data from laser sensors and cameras is not afforable for mobile
-embedded systems.
-Therefore it would be significant if we could offload these compute
-tasks to the cloud.
+Environmental perception is composed of compute-intensive tasks.
+Perception algorithms are often complex and the volume of input data
+from laser sensors and high-resolution cameras is not afforable for
+mobile embedded systems.
+Therefore it is significant if we can offload these compute-intensive
+tasks to the cloud in real-time.
 
-Fig. \ref{fig:tipic} illustrates the conceptual architecture of our
-experimental networked image processing system.
+Fig. \ref{fig:tipic} shows a conceptual architecture of our experimental
+networked image processing system.
 We capture images in real-time from commodity smartphones attached in
 the vehicle and transfer them over the network to the HPC server where
 the actual image processing tasks are executing.
 The results of image processing such as the detected vehicles and
-pedestrians are fed back to the vehicular system.
-Though we have implemented many variants of image processing algorithms
-\cite{Hirabayashi13}, they are not focused on in this paper.
-Instead we investigate if current commodity ICT platforms can transfer
-data over the network while meeting the desired throughput and latency.
+pedestrians are fed back to the vehicular embedded system.
+Although we have implemented several variants of state-of-the-art image
+processing algorithms \cite{Hirabayashi13}, we exclude them from the
+scope of this paper.
+Alternatively we investigate if commodity ICT platforms can meet the
+requirement of throughput and latency for image transfers.
 
 \begin{figure}[!t]
  \centering
