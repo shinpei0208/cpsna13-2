@@ -1,5 +1,5 @@
 %%Title: ./OBD2.pdf
-%%Creator: ebb Version 0.5.2
+%%Creator: extractbb 20120420
 %%BoundingBox: 0 0 695 403
-%%CreationDate: Sun Apr 14 21:41:09 2013
+%%CreationDate: Mon Apr 15 20:22:51 2013
 
