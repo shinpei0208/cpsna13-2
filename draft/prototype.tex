@@ -33,7 +33,7 @@ captured images to the HPC server as fast as possible.
 
 We have a TOYOTA Prius that is modified to be able to overwrite the
 control of steering, accel, and break from the computer.
-This computer called ``local master computer'' is connected to an
+This computer called ``vehicular master computer'' is connected to an
 supplemental embedded device board that can directly send signals to the
 internale wire system controlling the vehicle.
 We omit a detailed description of this autonomous driving system, as our
@@ -42,7 +42,7 @@ primary focus is the quantification of overhead.
 Fig. \ref{fig:andrive} shows a conceptual architecture of our
 experimental remote vehicle control system.
 We make use of a commodity smartphone to send the control command to the
-local master computer equipped within the vehicle through the network.
+vehicular master computer equipped within the vehicle through the network.
 The smartphone application determines the steering angle from the gyro
 sensor while the accel and the break strokes are controlled by the
 graphics user interface.
@@ -78,13 +78,6 @@ scope of this paper.
 Alternatively we investigate if commodity ICT platforms can meet the
 requirement of throughput and latency for image transfers.
 
-\begin{figure}[!t]
- \centering
- \includegraphics[width=0.9\hsize]{fig/multithread.pdf}
- \caption{Multithreading of image transfers.}
- \label{fig:multithread}
-\end{figure}
-
 Unlike control commands, the size of an image is large and it generates
 additional latency for the transfer.
 For example, each image transfer is composed of (i) capturing an image,
@@ -106,3 +99,11 @@ encoding process if there is only one thread available for encoding.
 Thus, we suggest that networked image processing using smartphones
 should make use of the multithreading capability and the parallelism of
 embedded multicore processors.
+
+\begin{figure}[!t]
+ \centering
+ \includegraphics[width=0.9\hsize]{fig/multithread.pdf}
+ \caption{Multithreading of image transfers.}
+ \label{fig:multithread}
+\end{figure}
+

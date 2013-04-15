@@ -26,12 +26,12 @@ for a testing smartphone.
 
 \begin{figure}[!t]
  \centering
- \includegraphics[width=0.75\hsize]{fig/No1_Andrive_serv_cycle_WiFi.pdf}
+ \includegraphics[width=0.8\hsize]{fig/No1_Andrive_serv_cycle_WiFi.pdf}
  \caption{The achieved period of \textit{synchronous} data transfers for
  control commands using WiFi.}
  \label{fig:no1}
  \vspace{1em}
- \includegraphics[width=0.75\hsize]{fig/No4_Andrive_serv_cycle_WiFi_only_send.pdf}
+ \includegraphics[width=0.8\hsize]{fig/No4_Andrive_serv_cycle_WiFi_only_send.pdf}
  \caption{The achieved period of \textit{asynchronous} data transfers
  for control commands using WiFi.}
  \label{fig:no4}
@@ -39,11 +39,11 @@ for a testing smartphone.
 
 Fig. \ref{fig:no1} shows the period (interarrival time) of data
 transfers for vehicle control commands achieved using WiFi when the
-local master computer in the vehicle and a smartphone client are
+vehicular master computer in the vehicle and a client smartphone are
 synchronized.
-The nodes are connected within a local area network, and the local
-master computer sends back an acknowledge message to the smartphone
-client every time the commands are received for synchronization.
+The nodes are connected within a local area network, and the vehicular
+master computer sends back an acknowledgement message to the smartphone
+every time the commands are received for synchronization.
 It meets a period of $5ms$ on average, which is acceptable for the
 feedback control rate of autonomous driving \cite{Kagami13}.
 However there are unpredictable spikes that increase the period up to
@@ -51,41 +51,76 @@ $60ms$ in the worst case.
 These unpredictable spikes are not acceptable under real-time
 constraints.
 
-Fig. \ref{fig:no4} shows 
+Fig. \ref{fig:no4} shows the period of data transfers in the same
+setup as Fig. \ref{fig:no1} except that the vehicular master computer and
+the smartphone are not synchronized, \textit{i.e.}, the smartphone is
+sending data without waiting for the acknowledgement message from the
+vehicular master computer.
+It is clear that some spikes are removed as compared to
+Fig. \ref{fig:no1}.
 
 \begin{figure}[!t]
  \centering
  \includegraphics[width=0.8\hsize]{fig/No2_Andrive_serv_cycle_LTE.pdf}
- \caption{The synchronous transfer time for control commands using LTE.}
+ \caption{The achieved period of \textit{synchronous} data transfers for
+ control commands using LTE.}
  \label{fig:no2}
-\end{figure}
-
-\begin{figure}[!t]
- \centering
+ \vspace{1em}
  \includegraphics[width=0.8\hsize]{fig/No5_Andrive_serv_cycle_LTE_only_send.pdf}
- \caption{The asynchronous transfer time for control commands using LTE.}
+ \caption{The achieved period of \textit{asynchronous} data transfers for
+ control commands using LTE.}
  \label{fig:no5}
 \end{figure}
+
+Fig. \ref{fig:no2} and \ref{fig:no5} show the period of data transfers
+for the same vehicular control command set using LTE.
+While WiFi is often suitable for intranet usage, LTE is more publicly
+deployed in the city as part of wireless internet services.
+As compared to WiFi, the data transfer times are increased due to less
+bandwidth.
+Its device specification and device driver implementation are also
+different from those of WiFi.
+For example, the LTE device driver on the Android smartphone buffers
+some data and then transfers a bundle of them at some point.
+This characteristics of LTE lead to the zig zag periods of data
+transfers as shown in Fig. \ref{fig:no5}.
+It is also remarkable that LTE severely suffers from the latency posed
+due to waiting for acknowledgement messages.
+When using LTE to send data from the global server to the smartphone, a
+public base station must detect the location of the smartphone first and
+next deliver data.
+We suspect that the significant latency comes from this public behavior
+of LTE.
 
 \begin{figure}[!t]
  \centering
  \includegraphics[width=0.45\hsize]{fig/No3_Andrive_boxplot_compare_WiFi_and_LTE.pdf}
  \includegraphics[width=0.45\hsize]{fig/No7_Andrive_only_send_boxplot_compare_WiFi_and_LTE.pdf}
- \caption{Summarized box plotting of the transfer times.}
+ \caption{Summarized box plotting of the \textit{synchronous} (left) and
+ \textit{asynchronous} (right) transfer times.}
  \label{fig:no3_7}
 \end{figure}
+
+Fig. \ref{fig:no3_7} depicts summarized box plotting of the achieved
+data transfer periods for vehicular control commands.
+This explains that WiFi is currently a better choice for real-time
+communication using commodity ICT platforms.
+We hope that LTE will become more practical for real-time usage given
+that it is a publicly available network.
+
+\subsection{Image Transfer}
 
 \begin{figure}[!t]
  \centering
  \includegraphics[width=0.8\hsize]{fig/No8_TIPiC_FPS_graph_WiFi.pdf}
- \caption{The frame rate of networked image processing using WiFi.}
+ \caption{The frame rate of image transfers using WiFi.}
  \label{fig:no8}
 \end{figure}
 
 \begin{figure}[!t]
  \centering
  \includegraphics[width=0.8\hsize]{fig/No9_TIPiC_serv_cycle_WiFi.pdf}
- \caption{The arrival time of networked image processing using WiFi.}
+ \caption{The achieved period of image transfers using WiFi.}
  \label{fig:no9}
 \end{figure}
 
