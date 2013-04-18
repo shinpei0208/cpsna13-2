@@ -43,10 +43,12 @@ synchronized.
 The nodes are connected within a local area network, and the vehicular
 master computer sends back an acknowledgment message to the smartphone
 every time the commands are received for synchronization.
-It meets a period of $5ms$ on average, which is acceptable for the
+The results after a few seconds from an establishing connection between the smartphone and the server are not included
+since the network is unstable after the establishing connection.
+It meets a period of $2ms$ on average, which is acceptable for the
 feedback control rate of autonomous driving \cite{Kagami13}.
 However there are unpredictable spikes that increase the period up to
-$50ms$ in the worst case.
+$7ms$ in the worst case.
 These unpredictable spikes are not acceptable under real-time
 constraints.
 
@@ -71,18 +73,21 @@ Fig. \ref{fig:no1}.
  \label{fig:no5}
 \end{figure}
 
-Fig. \ref{fig:no2} and \ref{fig:no5} show the period of data transfers
+Figs. \ref{fig:no2} and \ref{fig:no5} show the period of data transfers
 for the same set of vehicular control commands using LTE.
 While WiFi is often suitable for intranet usage, LTE is more publicly
 deployed in the city as part of wireless internet services.
 As compared to WiFi, the data transfer times achieved by LTE are
 increased due to its less bandwidth.
 It takes around $100ms$ to transfer a single set of control commands,
-and some spike reaches $200ms$ in the worst case when the smartphone
+and some spike reaches $110ms$ in the worst case when the smartphone
 waits for an acknowledgment message from the server for every
 transfer.
 An asynchronous transfer can mitigate this spike but the average period
 of data transfers is still capped at around $100ms$.
+In the evaluation environment of LTE, 
+the difference between synchronous and asynchronous transfers is only around $10ms$
+since downstream (the server to the smartphone) is three times faster than upstream (the smartphone to the sever).
 
 \begin{figure}[!t]
  \centering
@@ -126,8 +131,17 @@ The top label (Single Thread) uses only a single thread to capture,
 encode, and transfer images.
 The other labels represent such implementations that use pipelining with
 multithreading.
+Comparing ``2Threads (main and transferring)''  and ``2Threads (main and encoding)``,
+the result shows that the transferring thread is not efficent when the number of encoding threads is small.
+Moreover it is speculated that the execution time of the transferring thread is short and finishs during the main thread is waiting for camera capture.
+%Fig. \ref{fig:no8}からシングルスレッドと2スレッド(main + transferring)を比較するとエンコードをシングルスレッドで
+%行う場合は、あまり効果がないと言える。
+%また、シングルスレッドと2Thread(main + transferring)は解像度1440x1088あたりでFPSが2Thread(main + encording), 3Thread, 4Threadと逆転する。この事象は、実装の問題により%発生する。本プログラムは、カメラから取得した画像データをキューに格納しており、そのキューに溜まった画像データをエンコードスレッドが順にエンコードするという形をとる。解像度が大きくなるにつれてエンコードに要する時間は増え、画像データを取得する周期にエンコードスレッドが追いつかなくなる。エンコード処理が追いつかなることによってキューに画像データが溜まり過ぎ、メモリ不足によりパフォーマンス著しく下がることで、この逆転現象が発生している。
 Especially the stage of encoding is time consuming, we also use multiple
 threads for encoding itself.
+In case of more than image size of $1440 \times 1088$ pixels, the single thread is faster than three and four threads.
+This performance degradation of three and four threads is due to a shortage of memory of an android application when encoding is much slower than the periods of camera capture. 
+However since more than the image size is unusual for smartphone, the problem is not critical in the application.
 It is notable that using four or six threads in total, we can meet a
 frame rate of more than $20$fps for a standard image size of $640 \times
 480$ pixels.
@@ -142,10 +156,10 @@ offload image processing to the cloud in terms of frame rate.
 \end{figure}
 
 Henceforth we focus on the best performer of the image transfer program,
-\textit{i.e.}, one represented by a label of ``6Thread''.
+\textit{i.e.}, one represented by a label of ``6Threads''.
 Fig. \ref{fig:no9} shows the period of image transfers on a cycle basis
 achieved using WiFi.
-Albeit high frame rates demonstrated in Fig \ref{fig:no8}, the period is
+Albeit high frame rates demonstrated in Fig. \ref{fig:no8}, the period is
 actually fluctuating to an extent.
 For example, some spike reaches $200ms$.
 This unpredictable spike may jeopardize fine-grained control that actuates
@@ -167,7 +181,7 @@ Fig. \ref{fig:no10} shows the frame rate of image transfers achieved
 using LTE for the same image set as those shown in Fig. \ref{fig:no8}.
 For a reference, the frame rate achieved using WiFi is also plotted.
 We omit the variants of the image transfer program other than
-``6Thread'', since the observed performance trend is similar to that
+``6Threads'', since the observed performance trend is similar to that
 shown in Fig. \ref{fig:no8}.
 Unlike the previous experiment of control commands highlighting latency,
 however, the frame rate of image transfers are not very different
@@ -177,6 +191,10 @@ that throughput is more dominated by the processor performance than the
 network performance.
 This means that LTE is competitive to WiFi in a scenario that we use a
 rich smartphone to transfer images to the cloud.
+
+Comparing Figs. \ref{fig:no3_7} and \ref{fig:no10}, in case of LTE,
+the results indicates the period of a command (16 bytes) and a small image such as $240\times160$ or $320\times240$ pixels are almost the same.
+This means that it takes time to start tranferring data in the LTE enviroment.
 
 \begin{comment}
 \begin{figure}[!t]
